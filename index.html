@@ -490,7 +490,9 @@ document.querySelectorAll(".gal img").forEach(function(i){i.onclick=function(){l
 lb.onclick=function(){lb.classList.remove("on")};
 var bm=document.getElementById("bm"),bf=document.getElementById("bf"),bw=document.getElementById("bw"),ok=document.getElementById("ok");
 function openB(s){bw.style.display="";ok.classList.remove("on");bf.sv.value=s;document.getElementById("bs").textContent=s?s:"Tell us about your vehicle and we'll confirm a time.";bm.classList.add("on");if(!matchMedia("(pointer:coarse)").matches)setTimeout(function(){bf.n.focus()},60)}
-document.addEventListener("click",function(e){var b=e.target.closest(".bk");if(b){e.preventDefault();openB(b.dataset.s||"");return}if(e.target===bm||e.target.closest("[data-x]"))bm.classList.remove("on")});
+function goBook(s){var f2=document.getElementById("bk2"),bk=document.getElementById("book");if(f2&&s){var i=-1;S.forEach(function(x,k){if(x[0]===s)i=k});var cb=i>-1&&f2.querySelector('input[name="svc"][value="'+i+'"]');if(cb&&!cb.checked){cb.checked=true;cb.dispatchEvent(new Event("change",{bubbles:true}))}var d=f2.querySelector("details");if(d)d.open=true}
+bm.classList.remove("on");if(bk)bk.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion:reduce)").matches?"auto":"smooth",block:"start"});if(f2&&!matchMedia("(pointer:coarse)").matches)setTimeout(function(){try{f2.n.focus({preventScroll:true})}catch(e){}},700)}
+document.addEventListener("click",function(e){var b=e.target.closest(".bk");if(b){e.preventDefault();goBook(b.dataset.s||"");return}if(e.target===bm||e.target.closest("[data-x]"))bm.classList.remove("on")});
 document.addEventListener("keydown",function(e){if(e.key==="Escape"){bm.classList.remove("on");lb.classList.remove("on")}});
 var LM="";
 function send(subject,fields,done){
